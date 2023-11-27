@@ -13,7 +13,7 @@ def server():
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(server_ip, username=username, password=password)
 
-    start_server_command = "iperf -s -P 1"
+    start_server_command = "iperf3 -s"
     _, stdout, stderr = ssh.exec_command(start_server_command)
 
     ssh.exec_command("sleep 5")
@@ -29,7 +29,7 @@ def server():
 
 @pytest.fixture(scope='function')
 def client(server):
-    client_command = f"iperf -c {server_ip}"
+    client_command = f"iperf3 -c {server_ip}"
     process = subprocess.Popen(client_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     output, error = process.communicate()
