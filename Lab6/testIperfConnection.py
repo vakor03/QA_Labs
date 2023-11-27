@@ -13,7 +13,6 @@ def client(server_ip):
 
 
 result, error = client(server_ip)
-print(result)
 
 if error:
     print("Error occurred:")
