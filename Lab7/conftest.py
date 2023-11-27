@@ -13,7 +13,7 @@ def server():
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(server_ip, username=username, password=password)
 
-    start_server_command = "iperf3 -s"
+    start_server_command = "iperf3 -s -p 5201 -1"
     _, stdout, stderr = ssh.exec_command(start_server_command)
 
     ssh.exec_command("sleep 5")
