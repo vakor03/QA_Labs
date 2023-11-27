@@ -16,8 +16,6 @@ def server():
     start_server_command = "iperf3 -s -p 5201 -1"
     _, stdout, stderr = ssh.exec_command(start_server_command)
 
-    ssh.exec_command("sleep 5")
-
     ssh.close()
 
     error_message = stderr.read().decode("utf-8")
